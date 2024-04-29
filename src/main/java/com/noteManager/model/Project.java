@@ -29,7 +29,12 @@ public class Project implements BaseEntity{
     @ManyToOne
     private User author;
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_project",
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }
+    )
     private Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)

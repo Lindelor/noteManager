@@ -1,6 +1,7 @@
 package com.noteManager.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,12 +39,13 @@ public class User implements BaseEntity{
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_project",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "project_id") }
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }
     )
     private Set<Project> projects = new HashSet<>();
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank
