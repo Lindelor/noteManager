@@ -31,18 +31,10 @@ public class User implements BaseEntity{
     private String lastName;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private Set<Project> childProjects = new HashSet<>();
+    private Set<Project> projects = new HashSet<>();
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Note> notes = new HashSet<>();
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_project",
-            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }
-    )
-    private Set<Project> projects = new HashSet<>();
 
     @NotBlank
     @Email

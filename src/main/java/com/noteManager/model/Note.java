@@ -25,11 +25,13 @@ public class Note implements BaseEntity{
     @NotBlank
     private String title;
 
+    private String body;
+
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User author;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
 
 

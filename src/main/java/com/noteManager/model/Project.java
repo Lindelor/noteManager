@@ -24,18 +24,11 @@ public class Project implements BaseEntity{
     private Long id;
 
     @NotBlank
+    @Column(unique = true)
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User author;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_project",
-            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }
-    )
-    private Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Note> notes = new HashSet<>();
