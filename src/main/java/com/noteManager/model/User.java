@@ -22,7 +22,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class User implements BaseEntity{
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private double id;
+    private Long id;
 
     @NotBlank
     private String firstName;
@@ -46,6 +46,7 @@ public class User implements BaseEntity{
 
     @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotBlank

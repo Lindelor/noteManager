@@ -21,7 +21,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class Project implements BaseEntity{
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private double id;
+    private Long id;
 
     @NotBlank
     private String title;
