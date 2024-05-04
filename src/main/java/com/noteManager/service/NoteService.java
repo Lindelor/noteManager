@@ -36,6 +36,15 @@ public class NoteService {
         return noteMapper.map(note);
     }
 
+    public List<NoteDTO> findAllByProjectId(Long id) {
+        var result = noteRepository.findAllByProjectId(id)
+                .stream()
+                .map(noteMapper::map)
+                .toList();
+
+        return result;
+    }
+
     public NoteDTO create(NoteCreateDTO noteCreateDTO) {
         var note = noteMapper.map(noteCreateDTO);
         noteRepository.save(note);
