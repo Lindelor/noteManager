@@ -57,4 +57,13 @@ public class ProjectService {
         return projectMapper.map(project);
     }
 
+    public List<ProjectDTO> findAllByUser(Long userId) {
+        var result = projectRepository.findAllByUserId(userId)
+                .stream()
+                .map(projectMapper::map)
+                .toList();
+
+        return result;
+    }
+
 }
