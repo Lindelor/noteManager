@@ -4,6 +4,7 @@ import com.noteManager.dto.UserCreateDTO;
 import com.noteManager.dto.UserDTO;
 import com.noteManager.dto.UserUpdateDTO;
 import com.noteManager.exception.ResourceNotFoundException;
+import com.noteManager.exception.ResourceAlreadyExistException;
 import com.noteManager.mapper.UserMapper;
 import com.noteManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,11 @@ public class UserService {
     }
 
     public UserDTO create(UserCreateDTO userCreateDTO) {
+        var maybeUser = userRepository.findByEmail(userCreateDTO.getEmail());
+        if (maybeUser.isPresent()) {
+            throw new ResourceAlreadyExistException("User with provided email already exist");
+        }
+
         var user = userMapper.map(userCreateDTO);
 
         userRepository.save(user);
