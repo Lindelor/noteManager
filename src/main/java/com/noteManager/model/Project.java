@@ -24,7 +24,6 @@ public class Project implements BaseEntity{
     private Long id;
 
     @NotBlank
-    @Column(unique = true)
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)

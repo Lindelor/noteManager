@@ -34,7 +34,6 @@ public class Note implements BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private Project project;
 
-
     @CreatedDate
     private LocalDate created_at;
 
