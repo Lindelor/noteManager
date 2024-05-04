@@ -58,7 +58,7 @@ public class ProjectService {
     }
 
     public List<ProjectDTO> findAllByUserId(Long userId) {
-        var result = projectRepository.findAllByUserId(userId)
+        var result = projectRepository.findAllByAuthorId(userId)
                 .stream()
                 .map(projectMapper::map)
                 .toList();
