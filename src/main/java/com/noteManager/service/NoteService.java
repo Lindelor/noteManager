@@ -24,7 +24,7 @@ public class NoteService {
     @Autowired
     private UserUtils userUtils;
 
-    public List<NoteDTO> getAll() {
+    public List<NoteDTO> findAllByCurrentUser() {
         var result = noteRepository.findAllByAuthorId(userUtils.getCurrentUser().getId())
                 .stream()
                 .map(noteMapper::map)

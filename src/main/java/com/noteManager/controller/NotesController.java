@@ -20,7 +20,7 @@ public class NotesController {
 
     @GetMapping(path = "")
     public ResponseEntity<List<NoteDTO>> index() {
-        return new ResponseEntity<>(noteService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(noteService.findAllByCurrentUser(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
