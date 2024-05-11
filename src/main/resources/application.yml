@@ -1,13 +1,17 @@
 spring:
   application:
-    name=noteManager:
+    name: noteManager
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
   output:
     ansi:
       enabled: always
+  datasource:
+    url: jdbc:h2:mem:notemng
+    username: sa
 
 rsa:
   private-key: classpath:certs/private.pem
