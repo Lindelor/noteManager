@@ -13,4 +13,6 @@ public class NoteCreateDTO {
     private String body;
     @NotNull
     private Long projectId;
+    @NotNull
+    private Long authorId;
 }

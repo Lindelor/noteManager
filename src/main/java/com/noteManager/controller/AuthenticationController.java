@@ -3,6 +3,8 @@ package com.noteManager.controller;
 import com.noteManager.dto.AuthRequest;
 import com.noteManager.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +22,13 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping(path = "/login")
-    public String create(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<String> create(@RequestBody AuthRequest authRequest) {
         var authentication = new UsernamePasswordAuthenticationToken(
                 authRequest.getUsername(), authRequest.getPassword());
 
         authenticationManager.authenticate(authentication);
 
         var token = jwtUtils.generateToken(authRequest.getUsername());
-        return token;
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 }

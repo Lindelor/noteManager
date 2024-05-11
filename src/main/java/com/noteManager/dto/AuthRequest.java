@@ -7,5 +7,5 @@ import lombok.Setter;
 @Getter
 public class AuthRequest {
     private String username;
-    private String Password;
+    private String password;
 }

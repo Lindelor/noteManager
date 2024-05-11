@@ -7,6 +7,7 @@ import com.noteManager.service.NoteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,21 +19,18 @@ public class NotesController {
     private NoteService noteService;
 
     @GetMapping(path = "")
-    @ResponseStatus(HttpStatus.OK)
-    public List<NoteDTO> index() {
-        return noteService.getAll();
+    public ResponseEntity<List<NoteDTO>> index() {
+        return new ResponseEntity<>(noteService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public NoteDTO show(@PathVariable Long id) {
-        return noteService.findById(id);
+    public ResponseEntity<NoteDTO> show(@PathVariable Long id) {
+        return new ResponseEntity<>(noteService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping(path = "")
-    @ResponseStatus(HttpStatus.CREATED)
-    public NoteDTO create(@Valid @RequestBody NoteCreateDTO noteCreateDTO) {
-        return noteService.create(noteCreateDTO);
+    public ResponseEntity<NoteDTO> create(@Valid @RequestBody NoteCreateDTO noteCreateDTO) {
+        return new ResponseEntity<>(noteService.create(noteCreateDTO), HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -42,14 +40,12 @@ public class NotesController {
     }
 
     @PutMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public NoteDTO update(@PathVariable Long id, @Valid @RequestBody NoteUpdateDTO noteUpdateDTO) {
-        return noteService.update(id, noteUpdateDTO);
+    public ResponseEntity<NoteDTO> update(@PathVariable Long id, @Valid @RequestBody NoteUpdateDTO noteUpdateDTO) {
+        return new ResponseEntity<>(noteService.update(id, noteUpdateDTO), HttpStatus.OK);
     }
 
     @GetMapping(path = "/project/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<NoteDTO> showByProjectId(@PathVariable Long id) {
-        return noteService.findAllByProjectId(id);
+    public ResponseEntity<List<NoteDTO>> showByProjectId(@PathVariable Long id) {
+        return new ResponseEntity<>(noteService.findAllByProjectId(id), HttpStatus.OK);
     }
 }

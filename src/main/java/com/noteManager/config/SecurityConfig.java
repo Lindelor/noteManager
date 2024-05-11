@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         // Разрешаем доступ только к /api/login и к /api/users, чтобы аутентифицироваться и получить токен или создать юзера
-                        .requestMatchers("/api/login")
+                        .requestMatchers(HttpMethod.POST,"/api/login")
                         .permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/users")
                         .permitAll()

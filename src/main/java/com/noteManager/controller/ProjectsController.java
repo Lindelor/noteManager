@@ -7,6 +7,7 @@ import com.noteManager.service.ProjectService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,33 +20,28 @@ public class ProjectsController {
     private ProjectService projectService;
 
     @GetMapping(path = "")
-    @ResponseStatus(HttpStatus.OK)
-    public List<ProjectDTO> index() {
-        return projectService.findAll();
+    public ResponseEntity<List<ProjectDTO>> index() {
+        return new ResponseEntity<>(projectService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ProjectDTO show(@PathVariable Long id) {
-        return projectService.findById(id);
+    public ResponseEntity<ProjectDTO> show(@PathVariable Long id) {
+        return new ResponseEntity<>(projectService.findById(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/user/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<ProjectDTO> findByUserId(@PathVariable Long id) {
-        return projectService.findAllByUserId(id);
+    public ResponseEntity<List<ProjectDTO>> findByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(projectService.findAllByUserId(id), HttpStatus.OK);
     }
 
     @PostMapping(path = "")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ProjectDTO create(@Valid @RequestBody ProjectCreateDTO projectCreateDTO) {
-        return projectService.create(projectCreateDTO);
+    public ResponseEntity<ProjectDTO> create(@Valid @RequestBody ProjectCreateDTO projectCreateDTO) {
+        return new ResponseEntity<>(projectService.create(projectCreateDTO), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ProjectDTO update(@PathVariable Long id, @Valid @RequestBody ProjectUpdateDTO projectUpdateDTO) {
-        return projectService.update(id, projectUpdateDTO);
+    public ResponseEntity<ProjectDTO> update(@PathVariable Long id, @Valid @RequestBody ProjectUpdateDTO projectUpdateDTO) {
+        return new ResponseEntity<>(projectService.update(id, projectUpdateDTO), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")

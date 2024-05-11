@@ -12,6 +12,7 @@ import org.mapstruct.*;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public abstract class NoteMapper {
+    @Mapping(target = "author.id", source = "authorId")
     @Mapping(target = "project.id", source = "projectId")
     public abstract Note map(NoteCreateDTO noteCreateDTO);
 
