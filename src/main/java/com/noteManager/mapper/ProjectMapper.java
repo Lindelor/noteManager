@@ -12,7 +12,6 @@ import org.mapstruct.*;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public abstract class ProjectMapper {
-    @Mapping(target = "author.id", source = "authorId")
     public abstract Project map(ProjectCreateDTO projectCreateDTO);
     @Mapping(source = "author.id", target = "authorId")
     @Mapping(source = "author.email", target = "authorEmail")

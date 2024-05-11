@@ -31,7 +31,7 @@ public class ProjectsController {
 
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<List<ProjectDTO>> findByUserId(@PathVariable Long id) {
-        return new ResponseEntity<>(projectService.findAllByUserId(id), HttpStatus.OK);
+        return new ResponseEntity<>(projectService.findAllByCurrentUser(), HttpStatus.OK);
     }
 
     @PostMapping(path = "")

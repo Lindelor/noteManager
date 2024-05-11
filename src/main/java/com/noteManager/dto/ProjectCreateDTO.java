@@ -11,7 +11,4 @@ public class ProjectCreateDTO {
     @NotBlank
     private String title;
 
-    @NotNull
-    private Long authorId;
-
 }
