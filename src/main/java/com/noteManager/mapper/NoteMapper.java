@@ -12,7 +12,7 @@ import org.mapstruct.*;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public abstract class NoteMapper {
-    @Mapping(target = "project", source = "projectId")
+    @Mapping(target = "project.id", source = "projectId")
     public abstract Note map(NoteCreateDTO noteCreateDTO);
 
     @Mapping(target = "projectId", source = "project.id")
@@ -21,6 +21,6 @@ public abstract class NoteMapper {
     @Mapping(target = "authorEmail", source = "author.email")
     public abstract NoteDTO map(Note note);
 
-    @Mapping(target = "project", source = "projectId")
+    @Mapping(target = "project.id", source = "projectId")
     public abstract void update(NoteUpdateDTO dto, @MappingTarget Note model);
 }

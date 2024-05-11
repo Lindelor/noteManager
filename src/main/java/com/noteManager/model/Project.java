@@ -14,6 +14,7 @@ import java.util.Set;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+@Entity
 @Getter
 @Setter
 @Table(name = "projects")
