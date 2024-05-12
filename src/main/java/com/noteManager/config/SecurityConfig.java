@@ -1,6 +1,6 @@
 package com.noteManager.config;
 
-import com.noteManager.service.CustomUserDetailsService;
+import com.noteManager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
@@ -25,7 +25,7 @@ public class SecurityConfig {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private CustomUserDetailsService userService;
+    private UserService userService;
 
     @Autowired
     private JwtDecoder jwtDecoder;
