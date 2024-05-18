@@ -16,8 +16,12 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/api/users")
 public class UsersController {
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public UsersController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(path = "")
     public ResponseEntity<List<UserDTO>> index() {

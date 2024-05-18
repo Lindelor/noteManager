@@ -16,8 +16,12 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/api/projects")
 public class ProjectsController {
-    @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    public ProjectsController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
 
     @GetMapping(path = "")
     public ResponseEntity<List<ProjectDTO>> index() {

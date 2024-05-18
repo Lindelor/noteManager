@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserUtils {
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserUtils(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User getCurrentUser() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();

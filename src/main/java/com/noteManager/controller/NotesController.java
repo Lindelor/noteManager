@@ -15,8 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/notes")
 public class NotesController {
-    @Autowired
     private NoteService noteService;
+
+    @Autowired
+    public NotesController(NoteService noteService) {
+        this.noteService = noteService;
+    }
 
     @GetMapping(path = "")
     public ResponseEntity<List<NoteDTO>> index() {

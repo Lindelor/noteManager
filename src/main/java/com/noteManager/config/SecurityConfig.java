@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,14 +22,18 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserService userService;
+    private UserDetailsManager userService;
+
+    private JwtDecoder jwtDecoder;
 
     @Autowired
-    private JwtDecoder jwtDecoder;
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserDetailsManager userService, JwtDecoder jwtDecoder) {
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+        this.jwtDecoder = jwtDecoder;
+    }
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {

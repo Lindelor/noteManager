@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/api")
 public class AuthenticationController {
-    @Autowired
     private JWTUtils jwtUtils;
 
-    @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    public AuthenticationController(JWTUtils jwtUtils, AuthenticationManager authenticationManager) {
+        this.jwtUtils = jwtUtils;
+        this.authenticationManager = authenticationManager;
+    }
 
     @PostMapping(path = "/login")
     public ResponseEntity<String> create(@RequestBody AuthRequest authRequest) {
